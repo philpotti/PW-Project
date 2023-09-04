@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test.only('Browser context Playwright Test', async ({ browser }) => {
+test('Browser context Playwright Test', async ({ browser }) => {
     // chrome - plugins / cookies
     /* Offial Playwright documentation website: playwright.dev/docs/test-assertions */
 
