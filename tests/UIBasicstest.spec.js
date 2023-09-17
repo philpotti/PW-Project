@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test.only('Browser context Playwright Test', async ({ browser }) => {
+test('Browser context Playwright Test', async ({ browser }) => {
     // chrome - plugins / cookies
     /* Offial Playwright documentation website: playwright.dev/docs/test-assertions */
 
@@ -28,8 +28,54 @@ test.only('Browser context Playwright Test', async ({ browser }) => {
     console.log(allTitles);
 });
 
-test('Page Playwright test', async ({ page }) => {
+test('UI Controls', async ({ page }) => {
 
-    await page.goto("https://www.google.com")
-    await expect(page).toHaveTitle("Google");
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+    const userName = page.locator('#username');
+    const singInBtn = page.locator('#signInBtn');
+    const dropDown = page.locator('select.form-control');
+    const documentLink = page.locator('[href*="documents-request"]');
+
+    await dropDown.selectOption('Consultant');
+    // await page.pause();  /** This is used to debug mainly*/
+    await page.locator('.checkmark').last().click();
+    await expect(page.locator('.checkmark').last()).toBeChecked(); // Or isChecked that will return a boolean value
+    console.log(await page.locator('.checkmark').last().isChecked());
+    await page.locator('#okayBtn').click();
+
+    await page.locator('#terms').click();
+    await expect(page.locator('#terms')).toBeChecked();
+    await page.locator('#terms').uncheck();
+    expect(await page.locator('#terms').isChecked()).toBeFalsy();
+
+    await expect(documentLink).toHaveAttribute("class","blinkingText");
+
 });
+
+test('Child windows handling', async ({ browser }) => {
+
+    
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+    
+    const documentLink = page.locator('[href*="documents-request"]');
+    const userName = page.locator('#username');
+
+    // await page.pause();
+    const [newPage] = await Promise.all([ 
+        context.waitForEvent('page'),
+        documentLink.click(),
+    ])
+
+    const text = await newPage.locator(':text("Please email us at")').textContent();
+    const arrayText = text.split('@');
+    const domain = arrayText[1].split(" ")[0];
+    console.log(domain);
+    await userName.fill(domain);
+    // await page.pause();
+    console.log(await userName.fill(domain));
+});
+
+// npx playwright codegen www.google.com ¡¡EXCELLENT TO GET SCRIPT BY RECORDING!!

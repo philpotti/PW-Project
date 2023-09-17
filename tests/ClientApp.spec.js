@@ -11,7 +11,6 @@ test('Browser context Playwright Test', async ({ page }) => {
     await page.locator('[class*="card-body"] b').first().waitFor(); /* This is a different way to wait for the element/s to be visible. waitForLoadState() method can be a little flaky */
     const titles = await page.locator('[class*="card-body"] b').allTextContents();
     console.log(titles);
-
 });
 
 
