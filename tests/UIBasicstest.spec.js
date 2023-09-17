@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test('Browser context Playwright Test', async ({ browser }) => {
+test.only('Browser context Playwright Test', async ({ browser }) => {
     // chrome - plugins / cookies
     /* Offial Playwright documentation website: playwright.dev/docs/test-assertions */
 
@@ -11,8 +11,8 @@ test('Browser context Playwright Test', async ({ browser }) => {
     const cardTitles = page.locator('.card-body a');
 
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
-    await userName.type('rahulshetty');
-    await page.locator('[type="password"]').type('learning');
+    await userName.fill('rahulshetty');
+    await page.locator('[type="password"]').fill('learning');
     await singInBtn.click();
     console.log(await page.locator('[style*="block"]').textContent());
     await expect(page.locator('[style*="block"]')).toContainText('Incorrect');
