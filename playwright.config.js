@@ -32,6 +32,5 @@ module.exports = defineConfig({
     headless: false,
     screenshot: 'on',
     trace: 'retain-on-failure'
-
   },
 });
