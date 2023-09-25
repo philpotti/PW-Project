@@ -15,5 +15,4 @@ test('UI Constrols', async ({ page }) => {
     await expect(page.locator('.checkmark').last()).toBeChecked();
     // Assertion
 
-
 });
