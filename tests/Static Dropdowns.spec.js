@@ -13,6 +13,5 @@ test('UI Constrols', async ({ page }) => {
     await page.locator('#okayBtn').click();
     console.log(await page.locator('.checkmark').last().isChecked()); /* Will print a boolean true or false if it is checked or not */
     await expect(page.locator('.checkmark').last()).toBeChecked();
-    // Assertion
 
 });
