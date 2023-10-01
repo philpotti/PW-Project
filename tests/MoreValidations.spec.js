@@ -12,7 +12,7 @@ test('Popup validations', async({page}) =>{
     await page.locator('#hide-textbox').click();
     await expect (page.locator('#displayed-text')).toBeHidden();
 
-    // // await page.pause();
+    // await page.pause();
 
     // POP-UP: Handling Pop-ups
         // ACCEPT OR DISMISS a POP-UP

@@ -54,7 +54,6 @@ test('UI Controls', async ({ page }) => {
 
 test('Child windows handling', async ({ browser }) => {
 
-    
     const context = await browser.newContext();
     const page = await context.newPage();
 

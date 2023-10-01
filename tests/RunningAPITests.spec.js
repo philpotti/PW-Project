@@ -16,7 +16,6 @@ test.beforeAll( async () =>
         token = loginResponseJson.token;
         console.log(token);
 
-        //
         const orderResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order",
         {
             data: orderPayLoad,
