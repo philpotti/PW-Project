@@ -16,7 +16,7 @@ test('Browser context Playwright Test', async ({ browser }) => {
     await singInBtn.click();
     console.log(await page.locator('[style*="block"]').textContent());
     await expect(page.locator('[style*="block"]')).toContainText('Incorrect');
-    /* fill method */
+
     await userName.fill("");
     await userName.fill("rahulshettyacademy");
     await singInBtn.click();

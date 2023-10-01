@@ -75,7 +75,5 @@ test('Browser context Playwright Test', async ({ page }) => {
     expect(orderId.includes(orderIdDetailsPage)).toBeTruthy();
     }
 );
-
-
 // imhaslop@gmail.com
 // Passwd321@_
